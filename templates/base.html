@@ -37,10 +37,10 @@
     </style>
 </head>
 <body>
-<!-- ნავბარი -->
+
 {% include "navbar.html" %}
 
-<!-- Flash მესიჯები და გვერდის კონტენტი -->
+
 <div class="container-fluid px-3">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -53,7 +53,7 @@
     {% block container %}{% endblock %}
 </div>
 
-<!-- Footer -->
+
 <footer class="bg-dark text-white py-4 mt-5 border-top border-secondary">
     <div class="container text-center">
         <p class="mb-2 fw-bold fs-5">MyShop – Shop for home decorations.</p>
