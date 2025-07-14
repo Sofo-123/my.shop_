@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register Page
+{% endblock %}
+
+{% block container %}
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 90vh;">
+        <div class="col-md-6">
+
+            <form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-lg">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    <div>
+                        <img src="{{ url_for('static', filename='uploads/logo.png') }}"
+                             alt="ლოგო"
+                             width="40"
+                             height="40"
+                             class="d-inline-block align-text-top me-2 rounded-circle">
+                        <span class="fw-bold">Ｍｙ Ｓｈｏｐ • Registration</span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+                    {% for error in form.username.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password(class="form-control", placeholder=form.password.label.text) }}
+                    {% for error in form.password.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.repeat_password(class="form-control", placeholder=form.repeat_password.label.text) }}
+                    {% for error in form.repeat_password.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="text-center">
+                    {{ form.submit(class="btn btn-primary px-5") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

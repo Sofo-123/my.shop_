@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block container %}
+<h2 class="text-center mt-6"> Cart/კალათა </h2>
+<div class="container mt-4 shadow" style="background-color: #E4E8EB; padding: 30px;">
+    {% if items %}
+    <div class="container mt-4">
+        <div class="row">
+            {% for item in items %}
+            <div class="col-md-4 col-lg-2 mb-4">
+                <div class="card h-100" style="max-width:180px; ">
+                    <a href="{{ url_for('product_detail', product_id=item.product.id) }}">
+                        <img src="{{ url_for('static', filename='uploads/' + item.product.img) }}"
+                             class="card-img-top img-fluid rounded shadow-lg" alt="{{ item.product.name }}">
+                    </a>
+                    <div class="card-body">
+                        <a href="{{ url_for('product_detail', product_id=item.product.id) }}"
+                           style="text-decoration:none; color:black;">
+                            <h5 class="card-title">{{ item.product.name }}</h5>
+                        </a>
+                        <p class="card-text">ფასი ერთეულზე: {{ item.product.price }} ₾</p>
+                        <p class="card-text">რაოდენობა: {{ item.quantity }}</p>
+                        <p class="card-text">ჯამი: {{ item.product.price * item.quantity }} ₾</p>
+                        <form action="{{ url_for('remove_from_cart', item_id=item.id) }}" method="post">
+                            <button class="btn btn-danger btn-sm mt-2"><i class="bi bi-trash-fill"></i> წაშლა</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+
+        <div class="container shadow-lg" style=" background-color:#FFFFF; padding:30px;">
+            <button class="btn btn-success btn-lg mt-2">სულ ჯამი: {{ total }} ₾</button>
+
+        </div>
+    </div>
+    {% else %}
+    <div class="container mt-4 ">
+        <p>კალათა ცარიელია.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
